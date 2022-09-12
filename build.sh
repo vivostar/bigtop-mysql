@@ -49,8 +49,6 @@ ADD . /bigtop-mysql
 COPY puppetize.sh /tmp/puppetize.sh
 ${ENV_PATH}
 RUN bash /tmp/puppetize.sh
-RUN cp -f /bigtop-mysql/hiera.yaml /etc/puppet
-RUN cp -r /bigtop-mysql/hieradata /etc/puppet
 EOF
 
 # modify the Dockerfile according to the OS/version
