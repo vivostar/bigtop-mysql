@@ -1,6 +1,6 @@
 bigtop::roles: 
-  - 'azkaban-db'
   - 'mysql-server'
+  - 'azkaban-db'
 yumrepo:
   'repo.mysql.com':
     baseurl: "http://repo.mysql.com/yum/mysql-5.7-community/el/%{::operatingsystemmajrelease}/$basearch/"
