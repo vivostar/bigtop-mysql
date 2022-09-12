@@ -1,10 +1,13 @@
+bigtop::roles: 
+  - 'azkaban-db'
+  - 'mysql-server'
 yumrepo:
   'repo.mysql.com':
-    baseurl: "http://repo.mysql.com/yum/mysql-5.6-community/el/%{::operatingsystemmajrelease}/$basearch/"
+    baseurl: "http://repo.mysql.com/yum/mysql-5.7-community/el/%{::operatingsystemmajrelease}/$basearch/"
     descr: 'repo.mysql.com'
     enabled: 1
-    gpgcheck: true
-    gpgkey: 'http://repo.mysql.com/RPM-GPG-KEY-mysql'
+    gpgcheck: false
+    gpgkey: 'https://repo.mysql.com/RPM-GPG-KEY-mysql-2022'
 mysql::client::package_name: "mysql-community-client" # required for proper MySQL installation
 mysql::server::package_name: "mysql-community-server" # required for proper MySQL installation
 mysql::server::package_ensure: 'installed' # do not specify version here, unfortunately yum fails with error that package is already installed
@@ -24,5 +27,7 @@ mysql::server::db:
     user: "dev"
     password: "devpass"
     host: "127.0.0.1"
+    sql: "/usr/lib/azkaban-db/create-all-sql-3.90.0.sql"
+    import_timeout: 1000
     grant:
       - "ALL"
