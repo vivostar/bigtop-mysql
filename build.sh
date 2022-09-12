@@ -45,7 +45,7 @@ fi
 cat >Dockerfile <<EOF
 FROM ${OS}:${VERSION}
 MAINTAINER dev@bigtop.apache.org
-ADD ../. /bigtop-home
+ADD . /bigtop-mysql
 COPY puppetize.sh /tmp/puppetize.sh
 ${ENV_PATH}
 RUN bash /tmp/puppetize.sh
