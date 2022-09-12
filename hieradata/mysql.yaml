@@ -20,13 +20,22 @@ mysql::server::override_options:
     'log-error': '/var/log/mysqld.log' # required for proper MySQL installation
   'mysqld_safe':
     'log-error': '/var/log/mysqld.log'  # required for proper MySQL installation
+# mysql::server::users:
+#   
+# mysql::server::grants:
+#   'root@%/*.*':
+#     ensure: 'present'
+#     options: ['GRANT']
+#     privileges: ['ALL']
+#     table: '*.*'
+#     user: 'root@%'
 
 # create database + account with access, passwords are not encrypted
 mysql::server::db:
   "dev":
     user: "dev"
     password: "devpass"
-    host: "127.0.0.1"
+    host: "%"
     sql: "/usr/lib/azkaban-db/create-all-sql-3.90.0.sql"
     import_timeout: 1000
     grant:
